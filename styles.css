@@ -608,6 +608,15 @@ img{ max-width: 100%; display: block; }
   .benefits-inner{ grid-template-columns: 1fr; }
 
   .section{ padding: 60px 20px; }
+
+  .contact-row{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 18px;
+  }
+
+  .contact-label{ margin-bottom: 2px; }
 }
 
 @media (max-width: 420px){
