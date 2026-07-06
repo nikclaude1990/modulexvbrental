@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="150" viewBox="0 0 720 150" role="img" aria-labelledby="title desc">
+  <title id="title">ModuleXVB Premium Event Solutions logo</title>
+  <desc id="desc">Horizontal ModuleXVB logo using the exact cleaned emblem, with white MODULEX text, orange VB text, and white Premium Event Solutions subtitle.</desc>
+  <defs>
+    <filter id="textShadow" x="-10%" y="-20%" width="120%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#000000" flood-opacity="0.65"></feDropShadow>
+    </filter>
+  </defs>
+  <image x="20" y="8" width="118" height="118" preserveAspectRatio="xMidYMid meet"></image>
+  <g filter="url(#textShadow)">
+    <text x="158" y="68" font-family="Arial Black, Impact, Montserrat, Arial, sans-serif" font-size="54" font-weight="900" letter-spacing="-2" fill="#ffffff">MODULEX</text>
+    <text x="474" y="68" font-family="Arial Black, Impact, Montserrat, Arial, sans-serif" font-size="54" font-weight="900" letter-spacing="-2" fill="#f36b00">VB</text>
+    <text x="161" y="101" font-family="Montserrat, Arial, sans-serif" font-size="14" font-weight="800" letter-spacing="4.5" fill="#ffffff">PREMIUM EVENT SOLUTIONS</text>
+  </g>
+</svg>
