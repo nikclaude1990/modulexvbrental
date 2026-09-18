@@ -1,4 +1,4 @@
-/* ===== ModuleX VB Rental — styles.css ===== */
+/* ModuleX VB Rental - site styles */
 
 :root{
   --bg: #0a0a0a;
@@ -11,6 +11,7 @@
   --orange: #e8580c;
   --orange-light: #ff8a3d;
   --orange-glow: rgba(232, 88, 12, 0.35);
+  --glow-hover: 0 0 28px var(--orange-glow);
 
   --font-head: 'Oswald', 'Arial Narrow', sans-serif;
   --font-body: 'Montserrat', 'Segoe UI', sans-serif;
@@ -49,7 +50,15 @@ ul{ margin: 0; padding: 0; list-style: none; }
 
 img{ max-width: 100%; display: block; }
 
-/* ===== Header ===== */
+/* Visible focus ring for keyboard users everywhere interactive */
+a:focus-visible,
+button:focus-visible{
+  outline: 2px solid var(--orange-light);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* Header */
 
 .site-header{
   position: sticky;
@@ -57,12 +66,12 @@ img{ max-width: 100%; display: block; }
   z-index: 100;
   background: rgba(10,10,10,0.86);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--panel-border);
+  border-block-end: 1px solid var(--panel-border);
 }
 
 .header-inner{
   max-width: var(--container);
-  margin: 0 auto;
+  margin-inline: auto;
   padding: 14px 24px;
   display: flex;
   align-items: center;
@@ -103,6 +112,8 @@ img{ max-width: 100%; display: block; }
 }
 
 .lang-btn{
+  display: inline-flex;
+  align-items: center;
   background: transparent;
   border: none;
   color: var(--text-dim);
@@ -110,7 +121,8 @@ img{ max-width: 100%; display: block; }
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 1px;
-  padding: 7px 16px;
+  line-height: 1;
+  padding: 8px 16px;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
 }
@@ -139,7 +151,7 @@ img{ max-width: 100%; display: block; }
   display: block;
 }
 
-/* ===== Hero ===== */
+/* Hero */
 
 .hero{
   position: relative;
@@ -147,12 +159,18 @@ img{ max-width: 100%; display: block; }
   display: flex;
   align-items: center;
   overflow: hidden;
-  border-bottom: 1px solid var(--panel-border);
+  border-block-end: 1px solid var(--panel-border);
 }
 
 .hero-bg{
   position: absolute;
   inset: 0;
+  /* JPEG first so older browsers get a usable image; image-set upgrades to WebP */
+  background-image: url('assets/hero-event.jpg');
+  background-image: image-set(
+    url('assets/hero-event.webp') type('image/webp'),
+    url('assets/hero-event.jpg') type('image/jpeg')
+  );
   background-size: cover;
   background-position: center;
   filter: saturate(1.1) contrast(1.05);
@@ -171,7 +189,7 @@ img{ max-width: 100%; display: block; }
   position: relative;
   z-index: 2;
   margin: 0;
-  padding: 0 24px 0 10%;
+  padding-inline: 10% 24px;
   width: 100%;
   max-width: 720px;
   opacity: 0;
@@ -227,11 +245,10 @@ img{ max-width: 100%; display: block; }
 .btn-primary{
   background: var(--orange);
   color: #fff;
-  box-shadow: 0 0 0 rgba(232,88,12,0);
 }
 
 .btn-primary:hover{
-  box-shadow: 0 0 28px var(--orange-glow);
+  box-shadow: var(--glow-hover);
   transform: translateY(-2px);
 }
 
@@ -244,20 +261,20 @@ img{ max-width: 100%; display: block; }
 .btn-ghost:hover{
   border-color: var(--orange);
   color: var(--orange-light);
-  box-shadow: 0 0 20px var(--orange-glow);
+  box-shadow: var(--glow-hover);
 }
 
-/* ===== Benefits strip ===== */
+/* Benefits strip */
 
 .benefits{
   background: var(--bg-alt);
-  border-bottom: 1px solid var(--panel-border);
+  border-block-end: 1px solid var(--panel-border);
   padding: 36px 24px;
 }
 
 .benefits-inner{
   max-width: var(--container);
-  margin: 0 auto;
+  margin-inline: auto;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
@@ -285,12 +302,12 @@ img{ max-width: 100%; display: block; }
   text-transform: uppercase;
 }
 
-/* ===== Sections ===== */
+/* Sections */
 
 .section{ padding: 88px 24px; }
 .section-alt{ background: var(--bg-alt); }
 
-.section-inner{ max-width: var(--container); margin: 0 auto; }
+.section-inner{ max-width: var(--container); margin-inline: auto; }
 
 .section-eyebrow{
   color: var(--orange);
@@ -306,7 +323,31 @@ img{ max-width: 100%; display: block; }
   margin-bottom: 48px;
 }
 
-/* ===== Product grid ===== */
+/* Intro paragraph directly under a section heading, which owns the 48px gap */
+.section h2 + .section-lead{
+  position: relative;
+  margin-top: -30px;
+  margin-bottom: 52px;
+  padding-block-start: 26px;
+  max-width: 68ch;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-dim);
+  text-wrap: pretty;
+}
+
+/* Short orange rule echoing the brochure's section dividers */
+.section h2 + .section-lead::before{
+  content: '';
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-start: 0;
+  width: 56px;
+  height: 3px;
+  background: var(--orange);
+}
+
+/* Product grid */
 
 .product-grid{
   display: grid;
@@ -333,10 +374,11 @@ img{ max-width: 100%; display: block; }
 .product-media{
   aspect-ratio: 4/3;
   overflow: hidden;
-  border-bottom: 1px solid var(--panel-border);
+  border-block-end: 1px solid var(--panel-border);
   background: #000;
 }
 
+/* contain (not cover) so tall/narrow product shots don't get cropped at the edges */
 .product-media img{ width: 100%; height: 100%; object-fit: contain; }
 
 .product-body{
@@ -363,19 +405,26 @@ img{ max-width: 100%; display: block; }
   margin: -6px 0 0;
 }
 
+.product-lead{
+  margin: 0;
+  font-size: 14.5px;
+  color: var(--text-dim);
+  text-wrap: pretty;
+}
+
 .product-list{ display: flex; flex-direction: column; gap: 7px; }
 
 .product-list li{
   color: var(--text-dim);
   font-size: 14.5px;
-  padding-left: 18px;
+  padding-inline-start: 18px;
   position: relative;
 }
 
 .product-list li::before{
   content: '';
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   top: 8px;
   width: 6px;
   height: 6px;
@@ -389,13 +438,13 @@ img{ max-width: 100%; display: block; }
   gap: 4px;
   font-size: 13px;
   color: var(--text-faint);
-  border-top: 1px solid var(--panel-border);
-  padding-top: 12px;
-  margin-top: 4px;
+  border-block-start: 1px solid var(--panel-border);
+  padding-block-start: 12px;
+  margin-block-start: 4px;
 }
 
 .price-badge{
-  margin-top: auto;
+  margin-block-start: auto;
   align-self: flex-start;
   background: transparent;
   border: 2px solid var(--orange);
@@ -413,10 +462,10 @@ img{ max-width: 100%; display: block; }
 .price-badge:hover{
   background: var(--orange);
   color: #fff;
-  box-shadow: 0 0 24px var(--orange-glow);
+  box-shadow: var(--glow-hover);
 }
 
-/* ===== Info grid ===== */
+/* Info grid */
 
 .info-grid{
   display: grid;
@@ -427,7 +476,6 @@ img{ max-width: 100%; display: block; }
 .info-card{
   background: var(--panel);
   border: 1px solid var(--panel-border);
-  border-left: none;
   border-radius: var(--radius);
   padding: 32px;
   transition: border-color 0.25s ease;
@@ -440,7 +488,7 @@ img{ max-width: 100%; display: block; }
 .info-card h3{ font-size: 18px; margin-bottom: 8px; }
 .info-card p{ margin-bottom: 0; font-size: 14.5px; }
 
-/* ===== Use cases ===== */
+/* Use cases */
 
 .usecase-strip{
   display: grid;
@@ -478,11 +526,7 @@ img{ max-width: 100%; display: block; }
   flex-shrink: 0;
 }
 
-.usecase span{
-  text-align: center;
-}
-
-/* ===== Notes ===== */
+/* Notes */
 
 .notes-list{
   display: flex;
@@ -494,27 +538,27 @@ img{ max-width: 100%; display: block; }
 .notes-list li{
   color: var(--text-dim);
   font-size: 16px;
-  padding-left: 24px;
+  padding-inline-start: 24px;
   position: relative;
 }
 
 .notes-list li::before{
-  content: '—';
+  content: '-';
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   color: var(--orange);
 }
 
-/* ===== Footer ===== */
+/* Footer */
 
 .site-footer{
   background: var(--bg-alt);
-  border-top: 1px solid var(--panel-border);
+  border-block-start: 1px solid var(--panel-border);
 }
 
 .footer-inner{
   max-width: var(--container);
-  margin: 0 auto;
+  margin-inline: auto;
   padding: 64px 24px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -542,17 +586,15 @@ img{ max-width: 100%; display: block; }
   text-transform: uppercase;
   font-size: 12.5px;
   color: var(--text-faint);
-  min-width: 90px;
+  inline-size: 90px;
+  flex-shrink: 0;
 }
 
-.contact-row a{
-  transition: color 0.2s ease;
-}
-
+.contact-row a{ transition: color 0.2s ease; }
 .contact-row a:hover{ color: var(--orange-light); }
 
 .footer-bottom{
-  border-top: 1px solid var(--panel-border);
+  border-block-start: 1px solid var(--panel-border);
   padding: 20px 24px;
   text-align: center;
 }
@@ -563,7 +605,7 @@ img{ max-width: 100%; display: block; }
   color: var(--text-faint);
 }
 
-/* ===== Responsive ===== */
+/* Responsive */
 
 @media (max-width: 980px){
   .product-grid{ grid-template-columns: repeat(2, 1fr); }
@@ -580,7 +622,7 @@ img{ max-width: 100%; display: block; }
     left: 0;
     right: 0;
     background: rgba(10,10,10,0.98);
-    border-bottom: 1px solid var(--panel-border);
+    border-block-end: 1px solid var(--panel-border);
     flex-direction: column;
     gap: 0;
     padding: 8px 24px;
@@ -592,16 +634,16 @@ img{ max-width: 100%; display: block; }
   .main-nav.open{ max-height: 400px; padding: 12px 24px 20px; }
 
   .main-nav a{
-    padding: 12px 0;
-    border-bottom: 1px solid var(--panel-border);
+    padding-block: 12px;
+    border-block-end: 1px solid var(--panel-border);
   }
 
-  .main-nav a:last-child{ border-bottom: none; }
+  .main-nav a:last-child{ border-block-end: none; }
 
   .nav-toggle{ display: flex; }
 
   .hero{ min-height: 560px; }
-  .hero-content{ padding: 0 20px; }
+  .hero-content{ padding-inline: 20px; }
 
   .product-grid{ grid-template-columns: 1fr; }
   .info-grid{ grid-template-columns: 1fr; }
@@ -622,4 +664,19 @@ img{ max-width: 100%; display: block; }
 
 @media (max-width: 420px){
   .hero-ctas{ flex-direction: column; align-items: stretch; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{ scroll-behavior: auto; }
+
+  .hero-content{
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  *, *::before, *::after{
+    transition-duration: 0.001ms !important;
+    animation-duration: 0.001ms !important;
+  }
 }
