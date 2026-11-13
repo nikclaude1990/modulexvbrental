@@ -363,6 +363,8 @@ button:focus-visible{
   display: flex;
   flex-direction: column;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  /* keep a linked product (e.g. /#portirnica) clear of the sticky header */
+  scroll-margin-top: 96px;
 }
 
 .product-card:hover{
